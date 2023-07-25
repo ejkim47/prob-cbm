@@ -1,0 +1,56 @@
+
+seed: 0
+
+# data
+dataroot: DATAROOT
+metadataroot: ./datasets/class_attr_data_10
+metadataroot_awa2: ./datasets/awa2
+dataset: cub
+reduce_concept: False
+
+workers: 4
+batch_size: 128
+test_batch_size: 128
+img_size: 224
+drop_prob: 0.3
+
+log_dir: ./runs
+experiment_name: time_modeltype
+override_cache: False
+log_tool: ['wandb']
+
+pred_class: True
+pred_concept: True
+pretrained: True
+load_pretrain:
+train_only_class: False
+
+# Training
+optim: adam
+lr: 0.0001
+lr_ratio: 2.
+scheduler_type: cosineannealing
+warm_epochs: 0
+epochs: 50
+grad_ac_steps: 1
+clip_grad_max_norm: 1.
+criterion_class: ce
+criterion_concept: bce
+train_class_mode: sequential
+
+concept_activation: sigmoid
+
+backbone: resnet18
+model_type: CBM
+n_samples_inference: 7
+deterministic_concept: False
+use_neg_concept: False
+
+hidden_dim:
+class_hidden_dim:
+activation_concept2class: prob
+intervention_prob: 0.
+use_probabilsitic_concept: True
+
+loss_weight_concept: 1.0
+loss_weight_class: 0.1

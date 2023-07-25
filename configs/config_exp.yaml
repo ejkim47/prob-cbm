@@ -1,0 +1,50 @@
+
+seed: 0
+
+# data
+dataset: cub
+metadataroot: ./datasets/class_attr_data_10
+use_cropped: False
+augmentation: weak
+batch_size: 128
+test_batch_size: 128
+
+experiment_name: time_modeltype
+
+pred_class: True
+pred_concept: True
+pretrained: True
+
+# Training
+optim: adamp
+lr: 0.001
+lr_ratio: 10.
+weight_decay: False
+scheduler_type: cosineannealing
+T_max: 50
+warm_epochs: 5
+warmup_epochs: 0
+epochs: 50
+epochs_class: 20
+grad_ac_steps: 1
+clip_grad_max_norm: 2.0
+criterion_class: ce
+criterion_concept: MCBCELoss
+train_class_mode: sequential
+use_neg_concept: True
+
+backbone: resnet18
+model_type: ProbCBM
+n_samples_train: 50
+n_samples_inference: 50
+deterministic_concept: True
+use_probabilsitic_concept: True
+hidden_dim: 16
+class_hidden_dim: 128
+use_scale: True
+activation_concept2class: prob
+intervention_prob: 0.5
+
+loss_weight_concept: 1.
+loss_weight_class: 1.
+vib_beta: 0.00005
