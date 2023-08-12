@@ -11,7 +11,7 @@ from utils.loss import MCBCELoss
 def run_epoch(args, model, data, optimizer, epoch, desc, device, loss_weight=None, train=False,  warm=False, inference_with_sampling=False, stage='joint'):
     if train:
         model.train()
-        if isinstance(model, (ProbCBM, ProbCBMm)):
+        if isinstance(model, (ProbCBM)):
             if warm and hasattr(model, 'cnn_module'):
                 for p in model.cnn_module.parameters():
                     p.requires_grad = False
